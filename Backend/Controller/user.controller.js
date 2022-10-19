@@ -20,7 +20,7 @@ userController.post("/register", async (req, res) => {
     if (err) {
       return res.status(500).send({ message: "Error in Register" });
     }
-    const newuser = await UserModel({
+    const newuser = new UserModel({
       name,
       email,
       password: hash,

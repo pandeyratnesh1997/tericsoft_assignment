@@ -29,7 +29,7 @@ bmiController.post("/create", async (req, res) => {
 
   const bmi = (weight / (height ** 2)).toFixed(2);
 
-  const newBmi = await BmiModel({
+  const newBmi = new BmiModel({
     userId,
     height,
     weight,
