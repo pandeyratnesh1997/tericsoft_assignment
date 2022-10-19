@@ -24,7 +24,7 @@ userController.post("/register", async (req, res) => {
     });
 
     await newuser.save();
-    res.send(201).send({ message: "signup sucessfull" });
+    res.status(201).send({ message: "signup sucessfull" });
   });
 });
 

@@ -23,10 +23,13 @@ bmiController.post("/create", async (req, res) => {
   // converting height (feet) to height (meter)
   height = height * 0.3048;
 
+  const bmi = (weight / (height ** 2)).toFixed(2);
+
   const newBmi = await BmiModel({
     userId,
     height,
     weight,
+    bmi,
   });
 
   await newBmi.save();
@@ -34,4 +37,4 @@ bmiController.post("/create", async (req, res) => {
   return res.status(201).send({ message: "data saved successfully" });
 });
 
-module.exports  =  bmiController;
+module.exports = bmiController;
