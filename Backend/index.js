@@ -13,11 +13,10 @@ const app = express();
 app.use(cors());
 app.use(json());
 
-app.use("user", userController());
+app.use('/user', userController);
+app.use(authenticate)
 
-app.use(authenticate());
-
-app.use("bmi", bmiController);
+app.use('/bmi', bmiController)
 
 app.listen(process.env.PORT, async () => {
   await connection;

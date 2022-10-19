@@ -6,6 +6,9 @@ const UserModel = require("../Model/User.model");
 
 const userController = Router();
 
+
+
+
 userController.post("/register", async (req, res) => {
   const { email, password, name } = req.body;
 
@@ -31,7 +34,9 @@ userController.post("/register", async (req, res) => {
 userController.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await UserModel.findOne({ email });
-  const userId = user.userId;
+
+  const userId = JSON.stringify(user._id)
+  const hash = user.password
 
   if (!user) {
     return res.status(401).send({ message: "user not found" });

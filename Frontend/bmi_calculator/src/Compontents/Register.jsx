@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import axios from 'axios';
-import { useToast } from '@chakra-ui/react';
+import axios from "axios";
+import { Button, Heading, useToast } from "@chakra-ui/react";
+import { Link, useNavigate } from "react-router-dom";
 
-import styles from '../Styled/form.module.css';
+import styles from "../Styled/form.module.css";
 
 const Register = () => {
   const [userDetails, setUserDetails] = useState({
@@ -11,41 +12,31 @@ const Register = () => {
     email: "",
     password: "",
   });
-  const toast = useToast()
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     setUserDetails({ ...userDetails, [name]: value });
-  }
-  
-  const handleRegister = async(e) =>{
+  };
+
+  const handleRegister = async (e) => {
     e.preventDefault();
     try {
-        let response = await axios.post('http://localhost:5000/register', userDetails);
-        
-        toast({
-            title : response.data.message,
-            status : 'success',
-            duration : 3000,
-            isClosable : true
-        })
+      let response = await axios.post(
+        "https://pure-meadow-80957.herokuapp.com/user/register",
+        userDetails
+      );
 
+      navigate("/login");
     } catch (error) {
-        console.log(error);
-        toast({
-            title : "Error in Register",
-            status : 'error',
-            duration : 3000,
-            isClosable : true
-        })
+      console.log(error);
+      alert("Error in Register");
     }
-
-  }
+  };
 
   return (
     <div className={styles.container}>
-        <h2>Register</h2>
+      <Heading size={"md"}>Register</Heading>
       <form onSubmit={handleRegister}>
         <div className={styles.row}>
           <div className={styles.label_column}>
@@ -53,12 +44,12 @@ const Register = () => {
           </div>
           <div className={styles.input_column}>
             <input
-            className={styles.input}
+              className={styles.input}
               type="text"
               placeholder="Enter your name.."
               name="name"
               value={userDetails.name}
-              onChange = {handleChange}
+              onChange={handleChange}
               required
             />
           </div>
@@ -75,7 +66,7 @@ const Register = () => {
               placeholder="Enter your email id.."
               name="email"
               value={userDetails.email}
-              onChange = {handleChange}
+              onChange={handleChange}
               required
             />
           </div>
@@ -92,7 +83,7 @@ const Register = () => {
               placeholder="Enter your password.."
               name="password"
               value={userDetails.password}
-              onChange = {handleChange}
+              onChange={handleChange}
               required
             />
           </div>
@@ -100,6 +91,11 @@ const Register = () => {
 
         <div className={styles.row}>
           <input className={styles.submit} type="submit" value="Register" />
+        </div>
+        <div className={styles.row}>
+            <p style={{margin: '10px'}}>Already Registered</p>
+            <br />
+            <Button style={{margin: '10px'}}><Link to='/login'>Go to Login</Link></Button>
         </div>
       </form>
     </div>

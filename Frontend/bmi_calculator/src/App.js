@@ -1,13 +1,12 @@
 
 import './App.css';
-import Login from './Compontents/Login';
-import Register from './Compontents/Register';
+
+import RoutePage from './Route/RoutePage';
 
 function App() {
   return (
     <div className="App">
-      <Register/>
-      <Login/>
+      <RoutePage/>
     </div>
   );
 }

@@ -2,7 +2,7 @@
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-    width: 40%;
+    width: 50%;
     height: fit-content;
     border : 1px solid rebeccapurple;
    padding-right: 50px;
@@ -52,10 +52,25 @@
 
 }
 
+
 .submit:hover{
     background-color: #45a049;
 
 }
+
+.table_container{
+    position: relative;
+    width: 50%;
+    margin: auto;
+    margin: 30px;
+    padding: 20px;
+    left : 25%;
+}
+
+.Table{
+    width: 100%
+}
+
 
 @media screen and (max-width: 600px) {
     .input, .input_column, .label_column {
